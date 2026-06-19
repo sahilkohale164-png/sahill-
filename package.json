@@ -1,0 +1,23 @@
+{
+  "name": "civil-engineer-ai-app",
+  "version": "1.0.0",
+  "description": "Civil Engineer AI Planner - 2D/3D Floor Plans, Cost Estimation, Vastu Compliance",
+  "main": "main.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "build-win": "electron-builder --win --publish never"
+  },
+  "dependencies": {
+    "three": "^r128",
+    "canvas": "^2.11.2",
+    "jspdf": "^2.5.1",
+    "html2canvas": "^1.4.1"
+  },
+  "devDependencies": {
+    "electron": "^latest",
+    "electron-builder": "^24.0.0"
+  }
+}
