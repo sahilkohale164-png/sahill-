@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineer AI Planner</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <h1>🏗️ Civil AI</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#" onclick="showTab('plot')">📐 Plot Input</a></li>
+                <li><a href="#" onclick="showTab('rooms')">🧠 AI Rooms</a></li>
+                <li><a href="#" onclick="showTab('vastu')">🔯 Vastu Check</a></li>
+                <li><a href="#" onclick="showTab('2d')">2️⃣ 2D Plan</a></li>
+                <li><a href="#" onclick="showTab('3d')">3️⃣ 3D View</a></li>
+                <li><a href="#" onclick="showTab('cost')">💰 Cost Est.</a></li>
+                <li><a href="#" onclick="generateReport()">📄 PDF Export</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Plot Input Tab -->
+            <div id="plot" class="tab active">
+                <h2>📐 Plot Input & Configuration</h2>
+                <div class="form-group">
+                    <label>Plot Length (meters):</label>
+                    <input type="number" id="plotLength" placeholder="Enter length" min="1" max="1000" value="40">
+                </div>
+                <div class="form-group">
+                    <label>Plot Width (meters):</label>
+                    <input type="number" id="plotWidth" placeholder="Enter width" min="1" max="1000" value="30">
+                </div>
+                <div class="form-group">
+                    <label>Road Direction:</label>
+                    <select id="direction">
+                        <option value="N">North</option>
+                        <option value="S">South</option>
+                        <option value="E" selected>East</option>
+                        <option value="W">West</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Budget (₹):</label>
+                    <input type="number" id="budget" placeholder="Enter budget" value="1000000">
+                </div>
+                <button onclick="generateLayout()" class="btn-primary">Generate Layout</button>
+            </div>
+
+            <!-- AI Room Suggestion Tab -->
+            <div id="rooms" class="tab">
+                <h2>🧠 AI Room Suggestions</h2>
+                <div id="roomSuggestions" class="suggestions-container"></div>
+                <button onclick="generateRoomSuggestions()" class="btn-primary">Generate AI Suggestions</button>
+            </div>
+
+            <!-- Vastu Compliance Tab -->
+            <div id="vastu" class="tab">
+                <h2>🔯 Vastu Compliance Checker</h2>
+                <div id="vastuReport" class="vastu-container"></div>
+                <button onclick="checkVastuCompliance()" class="btn-primary">Check Vastu</button>
+            </div>
+
+            <!-- 2D Floor Plan Tab -->
+            <div id="2d" class="tab">
+                <h2>2️⃣ 2D Floor Plan</h2>
+                <div class="canvas-container">
+                    <canvas id="canvas2d" width="800" height="600"></canvas>
+                </div>
+                <button onclick="draw2DPlan()" class="btn-primary">Draw 2D Plan</button>
+                <button onclick="downloadCanvas2D()" class="btn-secondary">Download 2D Image</button>
+            </div>
+
+            <!-- 3D View Tab -->
+            <div id="3d" class="tab">
+                <h2>3️⃣ 3D Visualization</h2>
+                <div id="canvas3d" class="canvas-container"></div>
+                <button onclick="generate3DView()" class="btn-primary">Generate 3D Model</button>
+                <button onclick="downloadCanvas3D()" class="btn-secondary">Download 3D View</button>
+            </div>
+
+            <!-- Cost Estimation Tab -->
+            <div id="cost" class="tab">
+                <h2>💰 Cost Estimator</h2>
+                <div id="costReport" class="cost-container"></div>
+                <button onclick="calculateCost()" class="btn-primary">Calculate Cost</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="aiPlanner.js"></script>
+    <script src="vastuCalc.js"></script>
+    <script src="canvas2d.js"></script>
+    <script src="canvas3d.js"></script>
+    <script src="costEstimator.js"></script>
+</body>
+</html>
