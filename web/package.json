@@ -1,42 +1,31 @@
 {
-  "name": "civil-engineer-ai-web",
+  "name": "Civil Engineer AI Planner",
   "version": "1.0.0",
-  "description": "Civil Engineer AI Planner - Web Version",
+  "homepage": "https://sahilkohale164-png.github.io/sahill-",
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "three": "^r128",
-    "jspdf": "^2.5.1",
-    "html2canvas": "^1.4.1",
-    "axios": "^1.6.0"
-  },
-  "devDependencies": {
     "react-scripts": "5.0.1",
-    "vite": "^4.4.0"
+    "three": "^r128",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev": "vite",
     "build": "react-scripts build",
+    "deploy": "npm run build && gh-pages -d build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
+    "extends": ["react-app"]
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.0.0"
   }
 }
