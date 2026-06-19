@@ -1,0 +1,114 @@
+.vastu-results {
+  margin-top: 25px;
+  animation: fadeIn 0.3s ease;
+}
+
+.vastu-score-card {
+  background: linear-gradient(135deg, #0a0e27, #0f1835);
+  border: 2px solid #1ab3d4;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.vastu-score-card h3 {
+  color: #1ab3d4;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.score-circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: conic-gradient(#ff6b35 var(--score), #2a2d3a var(--score));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 0 30px rgba(255, 107, 53, 0.4);
+}
+
+.score-value {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1ab3d4;
+}
+
+.recommendation {
+  font-size: 16px;
+  font-weight: 600;
+  margin-top: 15px;
+  padding: 12px;
+  background: rgba(26, 179, 212, 0.1);
+  border-radius: 6px;
+}
+
+.vastu-details {
+  margin-top: 30px;
+}
+
+.vastu-details h3 {
+  color: #1ab3d4;
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+.vastu-rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+.vastu-rule {
+  background: #0a0e27;
+  border: 2px solid #2a2d3a;
+  border-radius: 8px;
+  padding: 15px;
+  transition: all 0.3s ease;
+}
+
+.vastu-rule.compliant {
+  border-left: 4px solid #4caf50;
+}
+
+.vastu-rule.partial {
+  border-left: 4px solid #ffc107;
+}
+
+.vastu-rule:hover {
+  border-color: #ff6b35;
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.2);
+}
+
+.rule-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.rule-header h4 {
+  color: #1ab3d4;
+  margin: 0;
+  font-size: 14px;
+}
+
+.status-badge {
+  font-size: 16px;
+}
+
+.rule-desc {
+  color: #b0b0b0;
+  font-size: 12px;
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+.rule-score {
+  color: #ff6b35;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 8px 0 0 0;
+}
