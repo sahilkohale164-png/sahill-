@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civil Engineer AI Planner - 3D Website Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #050812 0%, rgba(5, 8, 18, 0.8) 100%);
+            color: #e0e0e0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            color: #1ab3d4;
+            text-shadow: 0 0 20px rgba(26, 179, 212, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: #ff6b35;
+            margin-bottom: 30px;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .gallery-item {
+            background: linear-gradient(135deg, #0a0e27, #0f1835);
+            border: 2px solid #2a2d3a;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(26, 179, 212, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .gallery-item:hover {
+            border-color: #ff6b35;
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #1a3a52, #2d5a7b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            border-bottom: 2px solid #2a2d3a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-image::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(26, 179, 212, 0.1) 50%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translate(-100%, -100%) rotate(45deg); }
+            100% { transform: translate(100%, 100%) rotate(45deg); }
+        }
+
+        .gallery-content {
+            padding: 25px;
+        }
+
+        .gallery-content h3 {
+            color: #1ab3d4;
+            margin-bottom: 12px;
+            font-size: 1.4em;
+        }
+
+        .gallery-content p {
+            color: #b0b0b0;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95em;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .feature-list li {
+            color: #1ab3d4;
+            padding: 6px 0;
+            font-size: 0.9em;
+        }
+
+        .feature-list li::before {
+            content: '✓ ';
+            color: #ff6b35;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .view-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b35, #ff8c42);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .view-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+        }
+
+        .view-btn:active {
+            transform: translateY(0);
+        }
+
+        .section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            color: #1ab3d4;
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px rgba(26, 179, 212, 0.3);
+            padding-bottom: 20px;
+            border-bottom: 2px solid #2a2d3a;
+        }
+
+        .full-width {
+            background: linear-gradient(135deg, #0a0e27, #0f1835);
+            border: 2px solid #2a2d3a;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px rgba(26, 179, 212, 0.1);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .preview-item {
+            background: rgba(26, 179, 212, 0.05);
+            border-left: 4px solid #ff6b35;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .preview-item h4 {
+            color: #ff6b35;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .preview-item p {
+            color: #b0b0b0;
+            line-height: 1.7;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 107, 53, 0.1);
+            border: 2px solid #ff6b35;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            color: #ff6b35;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #1ab3d4;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(26, 179, 212, 0.1), rgba(255, 107, 53, 0.05));
+            border: 1px solid #2a2d3a;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: #1ab3d4;
+            box-shadow: 0 0 20px rgba(26, 179, 212, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 12px;
+        }
+
+        .feature-card h4 {
+            color: #1ab3d4;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #b0b0b0;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #1ab3d4, #0a9ab3);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 2px solid #1ab3d4;
+            margin-top: 20px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: #1ab3d4;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(26, 179, 212, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 2px solid #2a2d3a;
+            color: #666;
+            margin-top: 50px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90vh;
+            top: 5%;
+            border-radius: 10px;
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            color: #ff6b35;
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .preview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏗️ Civil Engineer AI Planner</h1>
+            <p class="subtitle">3D Website Preview & Visual Guide</p>
+        </header>
+
+        <!-- Section 1: Main Features -->
+        <div class="section">
+            <h2 class="section-title">✨ Main Features & Views</h2>
+            <div class="gallery">
+                <!-- Plot Input Card -->
+                <div class="gallery-item">
+                    <div class="gallery-image">📐</div>
+                    <div class="gallery-content">
+                        <h3>📐 Plot Input Panel</h3>
+                        <p>Enter your plot details with ease</p>
+                        <ul class="feature-list">
+                            <li>Length in meters</li>
+                            <li>Width in meters</li>
+                            <li>Road direction (N/E/S/W)</li>
+                            <li>Budget planning</li>
+                        </ul>
+                        <button class="view-btn" onclick="openModal('plotModal')">View Demo</button>
+                    </div>
+                </div>
+
+                <!-- AI Rooms Card -->
+                <div class="gallery-item">
+                    <div class="gallery-image">🧠</div>
+                    <div class="gallery-content">
+                        <h3>🧠 AI Room Suggestions</h3>
+                        <p>Intelligent layout recommendations</p>
+                        <ul class="feature-list">
+                            <li>Compact layouts</li>
+                            <li>Medium layouts</li>
+                            <li>Spacious layouts</li>
+                            <li>Area optimization</li>
+                        </ul>
+                        <button class="view-btn" onclick="openModal('roomsModal')">View Demo</button>
+                    </div>
+                </div>
+
+                <!-- Vastu Card -->
+                <div class="gallery-item">
+                    <div class="gallery-image">🔯</div>
+                    <div class="gallery-content">
+                        <h3>🔯 Vastu Compliance</h3>
+                        <p>10-point Vastu analysis system</p>
+                        <ul class="feature-list">
+                            <li>Compliance scoring</li>
+                            <li>Direction analysis</li>
+                            <li>Detailed recommendations</li>
+                            <li>Room positioning</li>
+                        </ul>
+                        <button class="view-btn" onclick="openModal('vastuModal')">View Demo</button>
+                    </div>
+                </div>
+
+                <!-- 2D Plan Card -->
+                <div class="gallery-item">
+                    <div class="gallery-image">2️⃣</div>
+                    <div class="gallery-content">
+                        <h3>2️⃣ 2D Floor Plan</h3>
+                        <p>Canvas-based floor plan visualization</p>
+                        <ul class="feature-list">
+                            <li>Color-coded rooms</li>
+                            <li>Real-time drawing</li>
+                            <li>Dimension display</li>
+                            <li>PNG export</li>
+                        </ul>
+                        <button class="view-btn" onclick="openModal('plan2dModal')">View Demo</button>
+                    </div>
+                </div>
+
+                <!-- 3D View Card -->
+                <div class="gallery-item">
+                    <div class="gallery-image">3️⃣</div>
+                    <div class="gallery-content">
+                        <h3>3️⃣ 3D Visualization</h3>
+                        <p>Interactive Three.js 3D models</p>
+                        <ul class="feature-list">
+                            <li>Drag to rotate</li>
+                            <li>Real-time rendering</li>
+                            <li>Room labels</li>
+                            <li>PNG download</li>
+                        </ul>
+                        <button class="view-btn" onclick="openModal('plan3dModal')">View Demo</button>
+                    </div>
+                </div>
+
+                <!-- Cost Card -->
+                <div class="gallery-item">
+                    <div class="gallery-image">💰</div>
+                    <div class="gallery-content">
+                        <h3>💰 Cost Estimator</h3>
+                        <p>Material & labor cost calculation</p>
+                        <ul class="feature-list">
+                            <li>Cement, Bricks, Steel</li>
+                            <li>Labor estimation</li>
+                            <li>Budget comparison</li>
+                            <li>Detailed breakdown</li>
+                        </ul>
+                        <button class="view-btn" onclick="openModal('costModal')">View Demo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Dashboard Overview -->
+        <div class="section">
+            <h2 class="section-title">🎨 Dashboard Overview</h2>
+            <div class="full-width">
+                <h3 style="color: #1ab3d4; margin-bottom: 20px; font-size: 1.5em;">Dark Theme Professional Dashboard</h3>
+                <p style="color: #b0b0b0; margin-bottom: 20px; line-height: 1.8;">Your website features a modern dark-themed professional dashboard with:</p>
+                
+                <div class="preview-grid">
+                    <div class="preview-item">
+                        <h4>🌙 Dark UI Design</h4>
+                        <p>Beautiful gradient backgrounds with deep space black (#050812) creating a comfortable viewing experience. Cyan and orange accent colors provide excellent contrast.</p>
+                    </div>
+                    <div class="preview-item">
+                        <h4>⚡ Responsive Layout</h4>
+                        <p>Flexible grid-based layout that adapts perfectly to desktop, tablet, and mobile devices. Navigation automatically adjusts for smaller screens.</p>
+                    </div>
+                    <div class="preview-item">
+                        <h4>✨ Smooth Animations</h4>
+                        <p>Fade-in effects, smooth transitions between tabs, and hover effects on all interactive elements for a polished feel.</p>
+                    </div>
+                    <div class="preview-item">
+                        <h4>🎯 Intuitive Navigation</h4>
+                        <p>Left sidebar with emoji icons for each feature, making navigation instantly recognizable and user-friendly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Statistics -->
+        <div class="section">
+            <h2 class="section-title">📊 Website Statistics</h2>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Main Features</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Visualization APIs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Vastu Rules</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Possibilities</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Technology Stack -->
+        <div class="section">
+            <h2 class="section-title">🛠️ Technology Stack</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚛️</div>
+                    <h4>React 18</h4>
+                    <p>Modern JavaScript framework for building interactive user interfaces</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Three.js</h4>
+                    <p>WebGL 3D library for creating interactive 3D visualizations</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎭</div>
+                    <h4>Canvas API</h4>
+                    <p>HTML5 Canvas for 2D floor plan drawing and rendering</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h4>Local Storage</h4>
+                    <p>Client-side data persistence for project history</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📡</div>
+                    <h4>REST API</h4>
+                    <p>External API integration for data fetching</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h4>Security</h4>
+                    <p>Secure client-side processing with no data collection</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: How It Looks -->
+        <div class="section">
+            <h2 class="section-title">👀 Visual Layout Guide</h2>
+            <div class="full-width">
+                <h3 style="color: #1ab3d4; margin-bottom: 20px; font-size: 1.3em;">Component Breakdown:</h3>
+                
+                <div class="preview-grid">
+                    <div class="preview-item">
+                        <h4>📌 Left Sidebar</h4>
+                        <p><strong>Width:</strong> 250px (responsive)<br>
+                        <strong>Background:</strong> Gradient #0a0e27 to #004e89<br>
+                        <strong>Content:</strong> Logo, Navigation tabs, Settings<br>
+                        <strong>Colors:</strong> Cyan text, Orange hover highlights</p>
+                    </div>
+                    <div class="preview-item">
+                        <h4>📊 Main Content Area</h4>
+                        <p><strong>Layout:</strong> Flexible, responsive grid<br>
+                        <strong>Background:</strong> Gradient dark theme<br>
+                        <strong>Padding:</strong> 30px all sides<br>
+                        <strong>Content:</strong> Tab content with forms and displays</p>
+                    </div>
+                    <div class="preview-item">
+                        <h4>🎨 Color Palette</h4>
+                        <p><strong>Primary:</strong> #1ab3d4 (Cyan)<br>
+                        <strong>Accent:</strong> #ff6b35 (Orange)<br>
+                        <strong>Dark:</strong> #0a0e27 (Deep black)<br>
+                        <strong>Text:</strong> #e0e0e0 (Light gray)</p>
+                    </div>
+                    <div class="preview-item">
+                        <h4>✨ Special Effects</h4>
+                        <p><strong>Transitions:</strong> 0.3s ease<br>
+                        <strong>Shadows:</strong> Glowing effects<br>
+                        <strong>Hover:</strong> Scale & lift up<br>
+                        <strong>Load:</strong> Fade & slide animations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="section">
+            <div class="full-width" style="text-align: center;">
+                <h2 style="color: #1ab3d4; font-size: 2em; margin-bottom: 20px;">🚀 Ready to Explore?</h2>
+                <p style="color: #b0b0b0; font-size: 1.1em; margin-bottom: 30px; line-height: 1.8;">
+                    Visit your live website to see all these features in action. Create projects, visualize floor plans, and get instant cost estimates!
+                </p>
+                <a href="https://sahilkohale164-png.github.io/sahill-/" class="cta-button" target="_blank">🌐 Open Live Website</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals for Feature Demos -->
+    
+    <!-- Plot Input Modal -->
+    <div id="plotModal" class="modal">
+        <span class="close" onclick="closeModal('plotModal')">&times;</span>
+        <div class="modal-content" style="background: #0a0e27; color: #e0e0e0; padding: 30px; max-width: 600px; border-radius: 10px;">
+            <h2 style="color: #1ab3d4; margin-bottom: 20px; font-size: 2em;">📐 Plot Input Demo</h2>
+            <div style="border-left: 4px solid #ff6b35; padding-left: 20px; margin-bottom: 20px;">
+                <h3 style="color: #ff6b35; margin-bottom: 10px;">Input Fields:</h3>
+                <ul style="list-style: none; color: #b0b0b0;">
+                    <li>✓ Plot Length: <span style="color: #1ab3d4;">40 meters</span></li>
+                    <li>✓ Plot Width: <span style="color: #1ab3d4;">30 meters</span></li>
+                    <li>✓ Road Direction: <span style="color: #1ab3d4;">East</span></li>
+                    <li>✓ Budget: <span style="color: #1ab3d4;">₹10,00,000</span></li>
+                </ul>
+            </div>
+            <p style="color: #b0b0b0; line-height: 1.7; margin-bottom: 20px;">
+                The Plot Input panel allows you to enter your property details in a clean, intuitive interface. All inputs are validated in real-time, and calculations update instantly as you change values.
+            </p>
+            <div style="background: rgba(26, 179, 212, 0.1); padding: 15px; border-radius: 8px; color: #b0b0b0;">
+                <strong>✨ Features:</strong>
+                <ul style="list-style: none; margin-top: 10px;">
+                    <li>• Real-time area calculation</li>
+                    <li>• Plot type auto-detection (Compact/Medium/Spacious)</li>
+                    <li>• Perimeter calculation</li>
+                    <li>• Budget validation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rooms Modal -->
+    <div id="roomsModal" class="modal">
+        <span class="close" onclick="closeModal('roomsModal')">&times;</span>
+        <div class="modal-content" style="background: #0a0e27; color: #e0e0e0; padding: 30px; max-width: 700px; border-radius: 10px;">
+            <h2 style="color: #1ab3d4; margin-bottom: 20px; font-size: 2em;">🧠 AI Room Suggestions Demo</h2>
+            <p style="color: #b0b0b0; margin-bottom: 20px;">
+                The AI suggests optimal room layouts based on your plot size. For a 1200m² medium plot, it recommends:
+            </p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: rgba(255, 107, 53, 0.1); border-left: 3px solid #ff6b35; padding: 15px; border-radius: 6px;">
+                    <h4 style="color: #ff6b35; margin-bottom: 10px;">Living Room</h4>
+                    <p style="color: #b0b0b0; font-size: 0.9em;">5x6m = 30m²</p>
+                </div>
+                <div style="background: rgba(0, 78, 137, 0.1); border-left: 3px solid #004e89; padding: 15px; border-radius: 6px;">
+                    <h4 style="color: #004e89; margin-bottom: 10px;">Kitchen</h4>
+                    <p style="color: #b0b0b0; font-size: 0.9em;">4x4m = 16m²</p>
+                </div>
+                <div style="background: rgba(26, 179, 212, 0.1); border-left: 3px solid #1ab3d4; padding: 15px; border-radius: 6px;">
+                    <h4 style="color: #1ab3d4; margin-bottom: 10px;">Master Bedroom</h4>
+                    <p style="color: #b0b0b0; font-size: 0.9em;">4x5m = 20m²</p>
+                </div>
+                <div style="background: rgba(247, 147, 30, 0.1); border-left: 3px solid #f7931e; padding: 15px; border-radius: 6px;">
+                    <h4 style="color: #f7931e; margin-bottom: 10px;">Bedrooms (2x)</h4>
+                    <p style="color: #b0b0b0; font-size: 0.9em;">3x4m = 12m²</p>
+                </div>
+            </div>
+            <div style="background: rgba(26, 179, 212, 0.1); padding: 15px; border-radius: 8px; color: #b0b0b0;">
+                <strong>✨ Intelligence:</strong>
+                <ul style="list-style: none; margin-top: 10px;">
+                    <li>• Compact: 4 rooms for <800m²</li>
+                    <li>• Medium: 6 rooms for 800-1200m²</li>
+                    <li>• Spacious: 8+ rooms for >1200m²</li>
+                    <li>• Built-up optimization (60-70%)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vastu Modal -->
+    <div id="vastuModal" class="modal">
+        <span class="close" onclick="closeModal('vastuModal')">&times;</span>
+        <div class="modal-content" style="background: #0a0e27; color: #e0e0e0; padding: 30px; max-width: 700px; border-radius: 10px;">
+            <h2 style="color: #1ab3d4; margin-bottom: 20px; font-size: 2em;">🔯 Vastu Compliance Demo</h2>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div style="font-size: 3em; margin-bottom: 10px;">⭐ 78%</div>
+                <p style="color: #4caf50; font-weight: 600; font-size: 1.1em;">✅ Good Vastu Compliance</p>
+            </div>
+            <h4 style="color: #1ab3d4; margin-bottom: 15px;">10-Point Analysis:</h4>
+            <div style="background: rgba(26, 179, 212, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; color: #b0b0b0; font-size: 0.9em;">
+                    <div>✅ North/East Entrance: 15/15</div>
+                    <div>⚠️ Master Bedroom: 8/15</div>
+                    <div>✅ Kitchen SE: 12/12</div>
+                    <div>✅ Living Room Central: 12/12</div>
+                    <div>✅ Prayer Room NE: 10/10</div>
+                    <div>✅ Toilets Away: 10/10</div>
+                </div>
+            </div>
+            <div style="background: rgba(76, 175, 80, 0.1); border: 1px solid #4caf50; padding: 15px; border-radius: 8px; color: #b0b0b0;">
+                <strong style="color: #4caf50;">Recommendations:</strong>
+                <ul style="list-style: none; margin-top: 10px;">
+                    <li>• Consider relocating master bedroom to SW corner</li>
+                    <li>• Add water feature in NE direction</li>
+                    <li>• Maintain open space on East side</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2D Plan Modal -->
+    <div id="plan2dModal" class="modal">
+        <span class="close" onclick="closeModal('plan2dModal')">&times;</span>
+        <div class="modal-content" style="background: #0a0e27; color: #e0e0e0; padding: 30px; max-width: 700px; border-radius: 10px;">
+            <h2 style="color: #1ab3d4; margin-bottom: 20px; font-size: 2em;">2️⃣ 2D Floor Plan Demo</h2>
+            <p style="color: #b0b0b0; margin-bottom: 20px;">
+                Your 2D floor plan is rendered using HTML5 Canvas with color-coded rooms and direction indicators.
+            </p>
+            <div style="background: #050812; border: 2px solid #1ab3d4; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                <div style="font-family: monospace; color: #1ab3d4; text-align: center; font-size: 0.9em;">
+                    <div style="margin-bottom: 10px;">↑ N</div>
+                    <div style="border: 2px solid #1ab3d4; padding: 10px; margin-bottom: 10px;">
+                        <div style="background: rgba(255, 107, 53, 0.2); padding: 8px; margin-bottom: 5px; border-radius: 4px;">Living Room (30m²)</div>
+                        <div style="background: rgba(0, 78, 137, 0.2); padding: 8px; margin-bottom: 5px; border-radius: 4px;">Kitchen (16m²)</div>
+                        <div style="background: rgba(26, 179, 212, 0.2); padding: 8px; border-radius: 4px;">Bedroom (20m²)</div>
+                    </div>
+                    <div>Plot: 40m × 30m | Area: 1200m²</div>
+                </div>
+            </div>
+            <div style="background: rgba(26, 179, 212, 0.1); padding: 15px; border-radius: 8px; color: #b0b0b0;">
+                <strong>✨ Features:</strong>
+                <ul style="list-style: none; margin-top: 10px;">
+                    <li>• Color-coded rooms for easy identification</li>
+                    <li>• Direction indicator (N/E/S/W)</li>
+                    <li>• Accurate scaling</li>
+                    <li>• PNG export capability</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D Plan Modal -->
+    <div id="plan3dModal" class="modal">
+        <span class="close" onclick="closeModal('plan3dModal')">&times;</span>
+        <div class="modal-content" style="background: #0a0e27; color: #e0e0e0; padding: 30px; max-width: 700px; border-radius: 10px;">
+            <h2 style="color: #1ab3d4; margin-bottom: 20px; font-size: 2em;">3️⃣ 3D Visualization Demo</h2>
+            <p style="color: #b0b0b0; margin-bottom: 20px;">
+                Interactive 3D model built with Three.js. Drag to rotate, scroll to zoom, and explore your design in three dimensions.
+            </p>
+            <div style="background: #050812; border: 2px solid #1ab3d4; border-radius: 8px; padding: 20px; margin-bottom: 20px; height: 300px; display: flex; align-items: center; justify-content: center; font-size: 3em; color: #1ab3d4;">
+                🏠 (3D Model Rendered Here)
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; color: #b0b0b0;">
+                <div style="background: rgba(255, 107, 53, 0.1); padding: 10px; border-radius: 6px;">
+                    <strong style="color: #ff6b35;">🔄 Controls</strong>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Drag: Rotate<br>Scroll: Zoom<br>Right-click: Pan</p>
+                </div>
+                <div style="background: rgba(26, 179, 212, 0.1); padding: 10px; border-radius: 6px;">
+                    <strong style="color: #1ab3d4;">✨ Features</strong>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Real-time rendering<br>Room labels<br>Shadows & lighting</p>
+                </div>
+            </div>
+            <div style="background: rgba(26, 179, 212, 0.1); padding: 15px; border-radius: 8px; color: #b0b0b0;">
+                <strong>Technology:</strong>
+                <ul style="list-style: none; margin-top: 10px;">
+                    <li>• Three.js WebGL rendering</li>
+                    <li>• Interactive camera controls</li>
+                    <li>• Real-time shadow mapping</li>
+                    <li>• 60 FPS smooth animation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cost Modal -->
+    <div id="costModal" class="modal">
+        <span class="close" onclick="closeModal('costModal')">&times;</span>
+        <div class="modal-content" style="background: #0a0e27; color: #e0e0e0; padding: 30px; max-width: 700px; border-radius: 10px;">
+            <h2 style="color: #1ab3d4; margin-bottom: 20px; font-size: 2em;">💰 Cost Estimator Demo</h2>
+            <div style="background: rgba(255, 107, 53, 0.1); border: 2px solid #ff6b35; border-radius: 8px; padding: 20px; margin-bottom: 20px; text-align: center;">
+                <div style="font-size: 2.5em; color: #ff6b35; font-weight: bold; margin-bottom: 10px;">₹42,00,000</div>
+                <p style="color: #b0b0b0;">Total Estimated Cost</p>
+            </div>
+            <h4 style="color: #1ab3d4; margin-bottom: 15px;">Material Breakdown:</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                <div style="background: rgba(26, 179, 212, 0.1); padding: 12px; border-radius: 6px; border-left: 3px solid #1ab3d4;">
+                    <p style="color: #1ab3d4; font-weight: 600;">🏗️ Cement</p>
+                    <p style="color: #b0b0b0; font-size: 0.9em; margin-top: 5px;">250 bags = ₹87,500</p>
+                </div>
+                <div style="background: rgba(26, 179, 212, 0.1); padding: 12px; border-radius: 6px; border-left: 3px solid #1ab3d4;">
+                    <p style="color: #1ab3d4; font-weight: 600;">🧱 Bricks</p>
+                    <p style="color: #b0b0b0; font-size: 0.9em; margin-top: 5px;">1,25,000 = ₹10,00,000</p>
+                </div>
+                <div style="background: rgba(26, 179, 212, 0.1); padding: 12px; border-radius: 6px; border-left: 3px solid #1ab3d4;">
+                    <p style="color: #1ab3d4; font-weight: 600;">🔩 Steel</p>
+                    <p style="color: #b0b0b0; font-size: 0.9em; margin-top: 5px;">4200 kg = ₹2,73,000</p>
+                </div>
+                <div style="background: rgba(26, 179, 212, 0.1); padding: 12px; border-radius: 6px; border-left: 3px solid #1ab3d4;">
+                    <p style="color: #1ab3d4; font-weight: 600;">👷 Labor</p>
+                    <p style="color: #b0b0b0; font-size: 0.9em; margin-top: 5px;">9040 sq.ft = ₹13,56,000</p>
+                </div>
+            </div>
+            <div style="background: rgba(76, 175, 80, 0.1); border: 1px solid #4caf50; padding: 15px; border-radius: 8px;">
+                <div style="display: flex; justify-content: space-between; color: #b0b0b0; margin-bottom: 10px;">
+                    <span>Material Cost:</span>
+                    <span>₹36,16,500</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; color: #b0b0b0; margin-bottom: 10px;">
+                    <span>Contingency (15%):</span>
+                    <span>₹5,42,475</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; color: #4caf50; font-weight: bold; border-top: 1px solid #4caf50; padding-top: 10px;">
+                    <span>Budget:</span>
+                    <span>✅ Within Budget</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Civil Engineer AI Planner | Powered by React + Three.js</p>
+        <p style="margin-top: 10px; font-size: 0.9em;">
+            <a href="https://sahilkohale164-png.github.io/sahill-/" style="color: #1ab3d4; text-decoration: none;">🌐 Visit Live Website</a> | 
+            <a href="https://github.com/sahilkohale164-png/sahill-" style="color: #1ab3d4; text-decoration: none;">📁 View on GitHub</a>
+        </p>
+    </footer>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
